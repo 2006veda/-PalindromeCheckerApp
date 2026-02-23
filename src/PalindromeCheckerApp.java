@@ -1,14 +1,21 @@
 import java.util.Stack;
-public class UseCase5PalindromeCheckerApp{
+import java.util.Queue;
+import java.util.LinkedList;
+public class UseCase6PalindromeCheckerApp{
     public static void main(String[] args){
-        String input = "noon";
+        String input = "civic";
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            queue.add(c);     // Enqueue (FIFO)
+            stack.push(c);    // Push (LIFO)
         }
         boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (!queue.isEmpty()) {
+            char fromQueue = queue.remove(); // Dequeue
+            char fromStack = stack.pop();    // Pop
+
+            if (fromQueue != fromStack) {
                 isPalindrome = false;
                 break;
             }
